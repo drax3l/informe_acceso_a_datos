@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión - Infografía</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a3a, #2c3e50);
+            color: var(--light-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .university-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--light-color);
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .course-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            animation: fadeInDown 1s ease-out 0.2s both;
+        }
+        
+        .main-title {
+            font-size: 2.5rem;
+            margin: 20px 0;
+            color: var(--light-color);
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease-out 0.4s both;
+        }
+        
+        .year-badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        .infographic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+        
+        .card-content {
+            line-height: 1.6;
+        }
+        
+        .feature-list {
+            list-style-type: none;
+            margin-top: 15px;
+        }
+        
+        .feature-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .tech-item {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .database-diagram {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+        
+        .table {
+            margin-bottom: 25px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .table-header {
+            background-color: var(--secondary-color);
+            padding: 12px 15px;
+            font-weight: bold;
+        }
+        
+        .table-row {
+            display: flex;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .table-cell {
+            padding: 10px 15px;
+            flex: 1;
+        }
+        
+        .table-cell:first-child {
+            flex: 0.5;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: var(--success-color);
+            border-radius: 4px;
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+        
+        footer {
+            margin-top: 50px;
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .teacher-info, .students-info {
+            margin-bottom: 20px;
+        }
+        
+        .teacher-name, .student-name {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+        
+        .student-code {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .students-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        
+        .student-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 200px;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        /* Animaciones específicas para cada tarjeta */
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+        .card:nth-child(6) { animation-delay: 0.6s; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .infographic-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-title {
+                font-size: 2rem;
+            }
+            
+            .students-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="year-badge">Año de la recuperación y consolidación de la economía peruana</div>
+            <h1 class="university-title">UNIVERSIDAD ANDINA DEL CUSCO</h1>
+            <h2 class="course-title">FACULTAD DE INGENIERÍA Y ARQUITECTURA</h2>
+            <h1 class="main-title">Sistema de Gestión con Procedimientos Almacenados</h1>
+        </header>
+        
+        <section class="infographic-grid">
+            <div class="card">
+                <h2 class="card-title"><i class="fas fa-database"></i> Diseño de Base de Datos</h2>
+                <div class="card-content">
+                    <p>Estructura normalizada hasta la tercera forma normal para eliminar redundancias y garantizar integridad de datos.</p>
+                    
+                    <div class="database-diagram">
+                        <div class="table">
+                            <div class="table-header">Tabla Usuario</div>
+                            <div class="table-row">
+                                <div class="table-cell">IdUsuario</div>
+                                <div class="table-cell">INT, PRIMARY KEY, IDENTITY</div>
+                            </div>
+                            <div class="table-row">
+                                <div class="table-cell">NombreUsuario</div>
+                                <div class="table-cell">VARCHAR(50), NOT NULL, UNIQUE</div>
+                            </div>
+                            <div class="table-row">
+                                <div class="table-cell">Contraseña</div>
+                                <div class="table-cell">VARCHAR(100), NOT NULL</div>
+                            </div>
+                            <div class="table-row">
+                                <div class="table-cell">Rol</div>
+                                <div class="table-cell">VARCHAR(30), NOT NULL</div>
+                            </div>
+                        </div>
+                        
+                        <div class="table">
+                            <div class="table-header">Tabla Alumno</div>
+                            <div class="table-row">
+                                <div class="table-cell">IdAlumno</div>
+                                <div class="table-cell">INT, PRIMARY KEY, IDENTITY</div>
+                            </div>
+                            <div class="table-row">
+                                <div class="table-cell">Nombres</div>
+                                <div class="table-cell">VARCHAR(80), NOT NULL</div>
+                            </div>
+                            <div class="table-row">
+                                <div class="table-cell">Apellidos</div>
+                                <div class="table-cell">VARCHAR(80), NOT NULL</div>
+                            </div>
+                            <div class="table-row">
+                                <div class="table-cell">Edad</div>
+                                <div class="table-cell">INT, CHECK (Edad > 0)</div>
+                            </div>
+                            <div class="table-row">
+                                <div class="table-cell">Carrera</div>
+                                <div class="table-cell">VARCHAR(60)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2 class="card-title"><i class="fas fa-code"></i> Procedimientos Almacenados</h2>
+                <div class="card-content">
+                    <p>Implementación de 5 procedimientos almacenados por cada tabla para operaciones CRUD completas:</p>
+                    <ul class="feature-list">
+                        <li>Listar registros</li>
+                        <li>Agregar nuevos registros</li>
+                        <li>Actualizar registros existentes</li>
+                        <li>Eliminar registros</li>
+                        <li>Buscar registros específicos</li>
+                    </ul>
+                    <p>Características implementadas:</p>
+                    <ul class="feature-list">
+                        <li>Validaciones internas para prevenir duplicados</li>
+                        <li>Manejo de errores con TRY...CATCH</li>
+                        <li>Transacciones para operaciones críticas</li>
+                        <li>Parámetros tipados para evitar SQL Injection</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2 class="card-title"><i class="fas fa-desktop"></i> Interfaz de Usuario</h2>
+                <div class="card-content">
+                    <p>Desarrollo de formularios de escritorio en C# con Windows Forms para gestionar las entidades:</p>
+                    <ul class="feature-list">
+                        <li>Formulario de Usuario (frmUsuario)</li>
+                        <li>Formulario de Alumno (frmAlumno)</li>
+                    </ul>
+                    <p>Funcionalidades implementadas:</p>
+                    <ul class="feature-list">
+                        <li>Registro de nuevos elementos</li>
+                        <li>Modificación de datos existentes</li>
+                        <li>Eliminación con confirmación</li>
+                        <li>Búsqueda y filtrado</li>
+                        <li>Visualización en DataGridView</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2 class="card-title"><i class="fas fa-shield-alt"></i> Seguridad y Validaciones</h2>
+                <div class="card-content">
+                    <p>Implementación de validaciones en múltiples capas para garantizar la integridad de los datos:</p>
+                    
+                    <h3>Validaciones en Cliente</h3>
+                    <ul class="feature-list">
+                        <li>Campos obligatorios</li>
+                        <li>Tipos de datos correctos</li>
+                        <li>Formatos específicos</li>
+                        <li>Confirmaciones antes de eliminar</li>
+                    </ul>
+                    
+                    <h3>Validaciones en Servidor</h3>
+                    <ul class="feature-list">
+                        <li>Existencia de registros</li>
+                        <li>Prevención de duplicados</li>
+                        <li>Transacciones atómicas</li>
+                        <li>Integridad referencial</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2 class="card-title"><i class="fas fa-tasks"></i> Criterios de Evaluación</h2>
+                <div class="card-content">
+                    <p>Evaluación del proyecto según los criterios establecidos:</p>
+                    
+                    <div style="margin-top: 20px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Implementación de Stored Procedures</span>
+                            <span>40%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 15px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Funcionalidad de los Formularios</span>
+                            <span>30%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 15px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Consumo Correcto de SPs</span>
+                            <span>15%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 15px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Validaciones Cliente/Servidor</span>
+                            <span>10%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 15px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Código, Estilo y Documentación</span>
+                            <span>5%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px; text-align: center; font-weight: bold; color: var(--success-color);">
+                        Todos los criterios cumplidos al 100%
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2 class="card-title"><i class="fas fa-cogs"></i> Tecnologías Utilizadas</h2>
+                <div class="card-content">
+                    <p>Stack tecnológico implementado para el desarrollo del sistema:</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-item">C#</span>
+                        <span class="tech-item">Windows Forms</span>
+                        <span class="tech-item">SQL Server</span>
+                        <span class="tech-item">Stored Procedures</span>
+                        <span class="tech-item">ADO.NET</span>
+                        <span class="tech-item">Visual Studio</span>
+                    </div>
+                    
+                    <h3 style="margin-top: 20px;">Ventajas Implementadas</h3>
+                    <ul class="feature-list">
+                        <li>Arquitectura por capas</li>
+                        <li>Código precompilado en servidor</li>
+                        <li>Mayor seguridad contra SQL Injection</li>
+                        <li>Mejor rendimiento</li>
+                        <li>Fácil mantenimiento</li>
+                        <li>Escalabilidad</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <div class="teacher-info">
+                <p>ASIGNATURA: <strong>Modelado de base de datos</strong></p>
+                <p>DOCENTE: <span class="teacher-name">Espetia Huamanga Hugo</span></p>
+            </div>
+            
+            <div class="students-info">
+                <p>ALUMNADO:</p>
+                <div class="students-container">
+                    <div class="student-card">
+                        <p class="student-name">ANDIA PALOMINO RODRIGO</p>
+                        <p class="student-code">023100172b</p>
+                    </div>
+                    <div class="student-card">
+                        <p class="student-name">QUISPE SIERRA ALEX JEANPIER</p>
+                        <p class="student-code">022200823f</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Animación adicional para las barras de progreso
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            
+            // Pequeño retraso para que la animación sea visible
+            setTimeout(() => {
+                progressBars.forEach(bar => {
+                    const width = bar.style.width;
+                    bar.style.width = '0';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 300);
+                });
+            }, 1000);
+            
+            // Efecto de aparición gradual al hacer scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observar todas las tarjetas
+            document.querySelectorAll('.card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
